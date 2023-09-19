@@ -1,0 +1,21 @@
+{
+    "name": "letanciomarinho/pontoonline",
+    "description": "sistema de ponto Online",
+    "type": "project",
+    "license": "mit",
+    "autoload": {
+        "psr-4": {
+            "Letanciomarinho\\Pontoonline\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "letancio alvaro marinho junior"
+        }
+    ],
+    "minimum-stability": "alpha",
+    "require": {
+        "php":">=8.0.2",
+        "nikic/fast-route": "^1.3"
+    }
+}
