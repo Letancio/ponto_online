@@ -1,28 +1,40 @@
 <?php
-// Importando as bibliotecas necessárias
+// index.php
 
-// Definindo as rotas
+// Captura a rota a partir do parâmetro GET "url"
+$route = isset($_GET['url']) ? $_GET['url'] : '';
+
+// Mapeia as rotas para controladores e métodos
 $routes = [
-    '/' => 'HomeController@index',
-    '/login' => 'LoginController@index',
-    // Adicione mais rotas aqui
+    'login' => ['controller' => 'LoginController', 'method' => 'logar'],
+    'acesso' => ['controller' => 'LoginController', 'method' => 'logarfuncionario'],
+    // Adicione mais rotas aqui conforme necessário
 ];
 
-// Verifica se a rota existe
-if (array_key_exists($_SERVER['REQUEST_URI'], $routes)) {
-    // Separa o controlador e o método
-    $controllerAction = explode('@', $routes[$_SERVER['REQUEST_URI']]);
-    $controllerName = $controllerAction[0];
-    $methodName = $controllerAction[1];
+// Verifica se a rota existe no array de rotas
+if (array_key_exists($route, $routes)) {
+    $routeInfo = $routes[$route];
+    $controllerName = $routeInfo['controller'];
+    $methodName = $routeInfo['method'];
+    $controllerPath = "src/Controllers/{$controllerName}.php";
 
-    // Inclui o arquivo do controlador
-    require_once 'src/App/controllers/' . $controllerName . '.php';
+    // Verifica se o arquivo do controlador existe
+    if (file_exists($controllerPath)) {
+        require_once $controllerPath;
 
-    // Cria uma instância do controlador e chama o método
-    $controller = new $controllerName();
-    $controller->$methodName();
+        // Instancia o controlador e chama o método apropriado
+        $controller = new $controllerName();
+        if (method_exists($controller, $methodName)) {
+            $controller->$methodName(); // Chama o método especificado no controlador
+        } else {
+            // Método não encontrado no controlador
+            echo "Método não encontrado no controlador.";
+        }
+    } else {
+        // Rota não encontrada, pode exibir uma página de erro
+        echo "Rota não encontrada";
+    }
 } else {
-    // Rota não encontrada
-    header('HTTP/1.0 404 Not Found');
-    echo "404 - Not Found";
+    // Rota não encontrada, pode exibir uma página de erro
+    echo "Rota não encontrada";
 }
