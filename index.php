@@ -6,6 +6,8 @@ $route = isset($_GET['url']) ? $_GET['url'] : '';
 
 // Mapeia as rotas para controladores e métodos
 $routes = [
+   // Alterado para que o HomeController seja executado quando o usuário acessar a rota `/`
+   '' => ['controller' => 'HomeController', 'method' => 'home'],
     'login' => ['controller' => 'LoginController', 'method' => 'logar'],
     'acesso' => ['controller' => 'LoginController', 'method' => 'logarfuncionario'],
     // Adicione mais rotas aqui conforme necessário
