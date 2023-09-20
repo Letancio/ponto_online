@@ -78,16 +78,3 @@
                     </div>
                 </div>
                 <?php include('src/Resource/theme/footer.php'); ?>
-                <style>
-        #relogio {
-            font-size: 2em; /* Tamanho da fonte maior */
-            font-family: Arial, sans-serif; /* Fonte moderna */
-            background-color: #333; /* Cor de fundo escura */
-            color: #fff; /* Cor do texto branca */
-            padding: 10px; /* Espaçamento interno para melhorar o visual */
-            border-radius: 10px; /* Cantos arredondados */
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra suave */
-            text-align: center; /* Centraliza o texto no meio */
-            margin-left: 107px;
-        }
-    </style>
