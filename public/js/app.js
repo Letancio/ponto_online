@@ -94,3 +94,20 @@ searchMobileTrigger.addEventListener('click', () => {
 });
 
 
+// Cria uma variável para armazenar a hora atual
+function atualizarRelogio() {
+	const relogioElement = document.getElementById("relogio");
+	const agora = new Date();
+	const horas = agora.getHours().toString().padStart(2, '0');
+	const minutos = agora.getMinutes().toString().padStart(2, '0');
+	const segundos = agora.getSeconds().toString().padStart(2, '0');
+
+	const horaFormatada = `${horas}:${minutos}:${segundos}`;
+	relogioElement.textContent = horaFormatada;
+}
+
+// Atualizar o relógio a cada segundo
+setInterval(atualizarRelogio, 1000);
+
+// Chamar a função para exibir o horário atual imediatamente
+atualizarRelogio();
